@@ -182,9 +182,13 @@ export default function CartDrawer() {
                   <span className={styles.subtotalPrice}>Rs {totalPrice.toLocaleString()}.00</span>
                 </div>
                 <p className={styles.footerNote}>Taxes, shipping, and discounts calculated at checkout.</p>
-                <button className={styles.checkoutBtn} onClick={() => alert('Proceeding to checkout simulation...')}>
+                <Link 
+                  href="/checkout" 
+                  className={styles.checkoutBtn}
+                  onClick={() => setIsCartOpen(false)}
+                >
                   CHECKOUT
-                </button>
+                </Link>
               </div>
             )}
           </motion.div>

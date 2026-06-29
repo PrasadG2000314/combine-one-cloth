@@ -1,0 +1,39 @@
+[
+  {
+    "id": "VL-184920",
+    "customer": {
+      "name": "Nipuna Perera",
+      "phone": "0771234567",
+      "email": "nipun@example.com",
+      "address": "45/2 Galle Road",
+      "city": "Colombo 03",
+      "postalCode": "00300"
+    },
+    "items": [
+      {
+        "productId": "1",
+        "name": "Graphic Printed Tee - Abstract",
+        "price": 3450,
+        "quantity": 2,
+        "color": "Black",
+        "size": "L",
+        "image": "/images/product-tee-1.png"
+      },
+      {
+        "productId": "3",
+        "name": "Wide Leg Denim - Light Wash",
+        "price": 5950,
+        "quantity": 1,
+        "color": "Light Blue",
+        "size": "32",
+        "image": "/images/product-denim-1.png"
+      }
+    ],
+    "subtotal": 12850,
+    "shipping": 0,
+    "total": 12850,
+    "paymentMethod": "Cash on Delivery",
+    "status": "Pending",
+    "createdAt": "2026-06-29T10:45:00.000Z"
+  }
+]
