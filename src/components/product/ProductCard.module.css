@@ -1,0 +1,200 @@
+.card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.imageWrapper {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 125%;
+  background-color: var(--color-bg-secondary);
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: opacity 0.4s ease, transform 0.6s ease;
+}
+
+.imageHidden {
+  opacity: 0;
+}
+
+.imageHover {
+  opacity: 0;
+}
+
+.imageVisible {
+  opacity: 1;
+}
+
+.imageContainer:hover .image {
+  transform: scale(1.05);
+}
+
+/* Badge */
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 2;
+  border-radius: 2px;
+}
+
+.badgeSale {
+  background-color: var(--color-accent-red);
+  color: #fff;
+}
+
+.badgeNew {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* Wishlist */
+.wishlist {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  padding: 6px;
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishlist:hover {
+  color: var(--color-accent-red);
+  background: #fff;
+}
+
+/* Quick Add */
+.quickAdd {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.quickAddVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quickAddBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background-color var(--transition-fast);
+}
+
+.quickAddBtn:hover {
+  background-color: #333;
+}
+
+/* Info */
+.info {
+  padding: 12px 0;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.pricing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.price {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.originalPrice {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.installment {
+  font-size: 11px;
+  color: var(--color-text-light);
+  margin-bottom: 8px;
+}
+
+/* Swatches */
+.swatches {
+  display: flex;
+  gap: 6px;
+}
+
+.swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.swatch:hover {
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .quickAdd {
+    display: none;
+  }
+
+  .name {
+    font-size: 12px;
+  }
+
+  .price {
+    font-size: 13px;
+  }
+
+  .installment {
+    font-size: 10px;
+  }
+}

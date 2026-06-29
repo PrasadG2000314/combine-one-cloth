@@ -1,0 +1,309 @@
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  max-width: 90vw;
+  height: 100vh;
+  background-color: var(--color-white);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform var(--transition-drawer);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.closeBtn {
+  padding: 4px;
+  color: var(--color-primary);
+  transition: opacity var(--transition-fast);
+}
+
+.closeBtn:hover {
+  opacity: 0.6;
+}
+
+/* Shipping Bar */
+.shippingBar {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.shippingText {
+  font-size: 11px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--color-text-muted);
+}
+
+.shippingText strong {
+  color: var(--color-primary);
+}
+
+.progressTrack {
+  width: 100%;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-accent-green);
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* Items Container */
+.itemsContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 24px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 60px 0;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.items {
+  padding: 16px 0;
+}
+
+.item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+}
+
+.itemImage {
+  width: 80px;
+  height: 100px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--color-bg-secondary);
+}
+
+.itemInfo {
+  flex: 1;
+  position: relative;
+}
+
+.wishlistBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.wishlistBtn:hover {
+  color: var(--color-accent-red);
+}
+
+.itemName {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+  padding-right: 24px;
+}
+
+.itemVariant {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.itemPrice {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.itemActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantityStepper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  height: 32px;
+}
+
+.quantityStepper button {
+  width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.quantityStepper button:hover {
+  color: var(--color-primary);
+}
+
+.quantityStepper span {
+  width: 28px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.removeBtn {
+  padding: 4px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.removeBtn:hover {
+  color: var(--color-accent-red);
+}
+
+/* Recommendations */
+.recommendations {
+  padding: 20px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.recTitle {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.recGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recItem {
+  display: flex;
+  gap: 12px;
+  padding: 8px;
+  border: 1px solid var(--color-border);
+  transition: border-color var(--transition-fast);
+}
+
+.recItem:hover {
+  border-color: var(--color-primary);
+}
+
+.recImage {
+  width: 60px;
+  height: 75px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--color-bg-secondary);
+}
+
+.recInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recName {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.recPrice {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Footer */
+.footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.footerNote {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.checkoutBtn {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background-color var(--transition-fast);
+  margin-bottom: 10px;
+}
+
+.checkoutBtn:hover {
+  background-color: #333;
+}
+
+.viewCartLink {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.viewCartLink:hover {
+  color: var(--color-primary);
+}

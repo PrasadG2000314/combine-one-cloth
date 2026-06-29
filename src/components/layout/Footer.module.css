@@ -1,0 +1,159 @@
+.footer {
+  background-color: var(--color-bg-dark);
+  color: var(--color-white);
+  margin-top: 0;
+}
+
+/* Newsletter */
+.newsletter {
+  padding: 60px 0 40px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.newsletterTitle {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.newsletterDesc {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 24px;
+}
+
+.newsletterForm {
+  display: flex;
+  max-width: 400px;
+  margin: 0 auto;
+  border-bottom: 1px solid #555;
+}
+
+.newsletterInput {
+  flex: 1;
+  padding: 12px 0;
+  background: transparent;
+  color: var(--color-white);
+  font-size: 14px;
+}
+
+.newsletterInput::placeholder {
+  color: #666;
+}
+
+.newsletterBtn {
+  padding: 12px;
+  color: var(--color-white);
+  transition: opacity var(--transition-fast);
+}
+
+.newsletterBtn:hover {
+  opacity: 0.7;
+}
+
+/* Social */
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.social a {
+  color: var(--color-white);
+  transition: opacity var(--transition-fast);
+}
+
+.social a:hover {
+  opacity: 0.6;
+}
+
+/* Links */
+.links {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.linksGrid {
+  display: flex;
+  gap: 80px;
+  justify-content: center;
+}
+
+.linkCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.linkTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.linkItem {
+  font-size: 13px;
+  color: #999;
+  transition: color var(--transition-fast);
+}
+
+.linkItem:hover {
+  color: var(--color-white);
+}
+
+.mobileLinks {
+  display: none;
+}
+
+/* Bottom */
+.bottom {
+  padding: 20px 0;
+}
+
+.bottomInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright {
+  font-size: 11px;
+  color: #666;
+}
+
+.powered {
+  font-size: 11px;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .linksGrid {
+    display: none;
+  }
+
+  .mobileLinks {
+    display: block;
+  }
+
+  .newsletter {
+    padding: 40px 0 30px;
+  }
+
+  .newsletterTitle {
+    font-size: 16px;
+  }
+
+  .bottomInner {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
