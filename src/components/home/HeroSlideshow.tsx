@@ -10,7 +10,7 @@ const slides = [
   {
     image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1600&q=80',
     title: 'THE BUBBLE KNIT\nSERIES',
-    subtitle: 'Voleee Core Collections',
+    subtitle: 'Draven Core Collections',
     description: 'Crafted in heavy-weight 240GSM cotton, our signature bubble knit tees present a relaxed drop-shoulder silhouette.',
     cta: 'Discover Tees',
     href: '/collections/new-arrivals',

@@ -31,7 +31,7 @@ export default function Footer() {
       {/* Newsletter */}
       <div className={styles.newsletter}>
         <div className="container">
-          <h3 className={styles.newsletterTitle}>SIGN UP FOR THE VOLEEE NEWSLETTER</h3>
+          <h3 className={styles.newsletterTitle}>SIGN UP FOR THE DRAVEN NEWSLETTER</h3>
           <p className={styles.newsletterDesc}>Be the first to know about new collections, exclusive offers, and more.</p>
           <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
             <input
@@ -133,8 +133,8 @@ export default function Footer() {
       <div className={styles.bottom}>
         <div className="container">
           <div className={styles.bottomInner}>
-            <p className={styles.copyright}>© {new Date().getFullYear()} VOLEEE. All rights reserved.</p>
-            <p className={styles.powered}>Powered by Voleee</p>
+            <p className={styles.copyright}>© {new Date().getFullYear()} DRAVEN. All rights reserved.</p>
+            <p className={styles.powered}>Powered by Draven</p>
           </div>
         </div>
       </div>

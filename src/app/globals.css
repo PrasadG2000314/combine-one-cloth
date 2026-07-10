@@ -546,6 +546,27 @@ input, textarea, select {
   border-color: var(--color-primary);
 }
 
+.size-btn.out-of-stock {
+  position: relative;
+  color: #ef4444 !important;
+  border-color: #fca5a5 !important;
+  background-color: #fef2f2 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.size-btn.out-of-stock::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: #ef4444;
+  transform: rotate(-25deg);
+  transform-origin: center;
+}
+
 /* Quantity Stepper */
 .quantity-stepper {
   display: flex;

@@ -67,7 +67,7 @@ export function initializeAdminIfMissing(): { username: string; password?: strin
   // Save plaintext credentials to a temporary file in the workspace root for the user
   const credentialsPath = path.join(process.cwd(), 'admin-credentials.txt');
   const content = `======================================================
-VOLEEE STOREFRONT ADMIN PANEL CREDENTIALS
+DRAVEN STOREFRONT ADMIN PANEL CREDENTIALS
 ======================================================
 Username: admin
 Password: ${password}

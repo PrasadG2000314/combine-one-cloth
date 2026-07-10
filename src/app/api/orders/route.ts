@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { readOrders, writeOrders, Order, OrderItem } from '@/lib/db';
-import { products } from '@/data/products';
+import { readOrders, writeOrders, readStock, writeStock, readProductsCatalog, Order, OrderItem } from '@/lib/db';
 
 export async function POST(request: Request) {
   try {
@@ -27,8 +26,11 @@ export async function POST(request: Request) {
     let subtotal = 0;
     const validatedItems: OrderItem[] = [];
 
+    const stockList = readStock();
+    const catalog = readProductsCatalog();
+
     for (const item of items) {
-      const serverProduct = products.find(p => p.id === item.productId);
+      const serverProduct = catalog.find(p => p.id === item.productId);
       if (!serverProduct) {
         return NextResponse.json(
           { message: `Product with ID ${item.productId} not found.` },
@@ -52,6 +54,16 @@ export async function POST(request: Request) {
       if (isNaN(qty) || qty <= 0) {
         return NextResponse.json(
           { message: `Invalid quantity for ${serverProduct.name}.` },
+          { status: 400 }
+        );
+      }
+
+      // Stock check
+      const stockRecord = stockList.find(s => s.productId === item.productId && s.color === item.color && s.size === item.size);
+      const stockQty = stockRecord ? stockRecord.quantity : 0;
+      if (stockQty < qty) {
+        return NextResponse.json(
+          { message: `Sorry! ${serverProduct.name} (Color: ${item.color}, Size: ${item.size}) is out of stock or has insufficient quantity (Available: ${stockQty}).` },
           { status: 400 }
         );
       }
@@ -104,7 +116,16 @@ export async function POST(request: Request) {
       createdAt: new Date().toISOString(),
     };
 
-    // 6. Save order in db
+    // 6. Deduct stock quantities from database
+    for (const item of validatedItems) {
+      const idx = stockList.findIndex(s => s.productId === item.productId && s.color === item.color && s.size === item.size);
+      if (idx !== -1) {
+        stockList[idx].quantity = Math.max(0, stockList[idx].quantity - item.quantity);
+      }
+    }
+    writeStock(stockList);
+
+    // 7. Save order in db
     orders.push(newOrder);
     writeOrders(orders);
 

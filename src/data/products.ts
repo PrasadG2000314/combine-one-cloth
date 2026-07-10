@@ -153,8 +153,8 @@ export const products: Product[] = [
   },
   {
     id: '8',
-    name: 'Voleee Snapback Cap',
-    slug: 'voleee-snapback-cap',
+    name: 'Draven Snapback Cap',
+    slug: 'draven-snapback-cap',
     price: 1950,
     images: ['/images/product-cap-1.png', '/images/product-cap-1.png'],
     colors: [
@@ -164,15 +164,15 @@ export const products: Product[] = [
     sizes: ['ONE SIZE'],
     category: 'accessories',
     collection: ['mens', 'womens', 'accessories'],
-    description: 'Structured 6-panel snapback cap with embroidered Voleee logo on front. Adjustable snap closure for a perfect fit. Premium cotton twill construction.',
+    description: 'Structured 6-panel snapback cap with embroidered Draven logo on front. Adjustable snap closure for a perfect fit. Premium cotton twill construction.',
     reviews: 14,
     rating: 4.6,
     isBestSeller: true,
   },
   {
     id: '9',
-    name: 'Voleee HydroJug 1L',
-    slug: 'voleee-hydrojug-1l',
+    name: 'Draven HydroJug 1L',
+    slug: 'draven-hydrojug-1l',
     price: 4500,
     images: ['/images/product-bottle-1.png', '/images/product-bottle-1.png'],
     colors: [
@@ -188,8 +188,8 @@ export const products: Product[] = [
   },
   {
     id: '10',
-    name: 'Voleee Tote Bag',
-    slug: 'voleee-tote-bag',
+    name: 'Draven Tote Bag',
+    slug: 'draven-tote-bag',
     price: 2500,
     images: ['/images/product-tote-1.png', '/images/product-bag-1.png'],
     colors: [
@@ -198,7 +198,7 @@ export const products: Product[] = [
     sizes: ['ONE SIZE'],
     category: 'bags',
     collection: ['mens', 'womens', 'accessories'],
-    description: 'Durable canvas tote bag with reinforced handles and interior pocket. Features subtle embroidered Voleee logo. Perfect for daily errands or gym visits.',
+    description: 'Durable canvas tote bag with reinforced handles and interior pocket. Features subtle embroidered Draven logo. Perfect for daily errands or gym visits.',
     reviews: 5,
     rating: 4.4,
   },
@@ -263,8 +263,8 @@ export const products: Product[] = [
   // --- BLAQ Merged Products (Branded as Voleee) ---
   {
     id: 'b1',
-    name: 'Voleee AOP Oversized T-Shirt',
-    slug: 'voleee-aop-oversized-tee',
+    name: 'Draven AOP Oversized T-Shirt',
+    slug: 'draven-aop-oversized-tee',
     price: 3200,
     originalPrice: 4500,
     images: [
@@ -441,8 +441,8 @@ export const products: Product[] = [
   },
   {
     id: 'b9',
-    name: 'Voleee Classic Fitted Polo',
-    slug: 'voleee-classic-fitted-polo',
+    name: 'Draven Classic Fitted Polo',
+    slug: 'draven-classic-fitted-polo',
     price: 3600,
     originalPrice: 4200,
     images: [
@@ -456,7 +456,7 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     category: 'polo',
     collection: ['mens', 'new-arrivals', 'sale'],
-    description: 'A tailored pique cotton polo shirt featuring signature Voleee embroidery on the chest. Designed with ribbed collar and cuffs, and a two-button placket for a smart-casual look.',
+    description: 'A tailored pique cotton polo shirt featuring signature Draven embroidery on the chest. Designed with ribbed collar and cuffs, and a two-button placket for a smart-casual look.',
     reviews: 9,
     rating: 4.5,
     isNew: true,

@@ -117,7 +117,7 @@ export default function MobileMenu() {
         </nav>
 
         <div className={styles.footer}>
-          <Link href="#" className={styles.footerLink}>LOG IN</Link>
+          <Link href="/admin" className={styles.footerLink}>LOG IN</Link>
         </div>
       </div>
     </>

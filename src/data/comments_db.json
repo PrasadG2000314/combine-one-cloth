@@ -1,0 +1,32 @@
+[
+  {
+    "id": "cmt-1",
+    "productId": "1",
+    "customerName": "Nipuna Perera",
+    "email": "nipun@example.com",
+    "rating": 5,
+    "content": "Absolutely amazing fit and heavy heavyweight material. Exactly the luxury streetwear aesthetic I was looking for! Highly recommended.",
+    "status": "Approved",
+    "createdAt": "2026-06-26T06:19:47.262Z"
+  },
+  {
+    "id": "cmt-2",
+    "productId": "1",
+    "customerName": "Dilshan K.",
+    "email": "dilshan@example.com",
+    "rating": 4,
+    "content": "Nice material, color is very rich. Slightly larger than expected so size down if you want a regular fit.",
+    "status": "Approved",
+    "createdAt": "2026-06-28T06:19:47.262Z"
+  },
+  {
+    "id": "cmt-3",
+    "productId": "3",
+    "customerName": "Malith Fernando",
+    "email": "malith@example.com",
+    "rating": 5,
+    "content": "Perfect wide leg denim. Beautiful wash details. Perfect matching with graphic tees.",
+    "status": "Approved",
+    "createdAt": "2026-06-27T06:19:47.262Z"
+  }
+]

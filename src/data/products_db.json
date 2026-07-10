@@ -1,0 +1,845 @@
+[
+  {
+    "id": "1",
+    "name": "Graphic Printed Tee - Abstract",
+    "slug": "graphic-printed-tee-abstract",
+    "price": 3450,
+    "images": [
+      "/images/product-tee-1.png",
+      "/images/product-tee-2.png"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "White",
+        "hex": "#ffffff"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "category": "tees",
+    "collection": [
+      "mens",
+      "new-arrivals",
+      "printed-tees"
+    ],
+    "description": "Premium heavyweight cotton graphic tee featuring an exclusive abstract art print. Oversized fit with ribbed crew neck and dropped shoulders for maximum comfort and style.",
+    "reviews": 12,
+    "rating": 4.8,
+    "isNew": true,
+    "isBestSeller": true
+  },
+  {
+    "id": "2",
+    "name": "Street Art Graphic Tee",
+    "slug": "street-art-graphic-tee",
+    "price": 3250,
+    "originalPrice": 3950,
+    "images": [
+      "/images/product-tee-2.png",
+      "/images/product-tee-1.png"
+    ],
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#ffffff"
+      },
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "category": "tees",
+    "collection": [
+      "mens",
+      "printed-tees",
+      "sale"
+    ],
+    "description": "Bold street art inspired graphic tee with vibrant front print. Made from 100% organic cotton with a relaxed oversized fit.",
+    "reviews": 8,
+    "rating": 4.5,
+    "isSale": true,
+    "isBestSeller": true
+  },
+  {
+    "id": "3",
+    "name": "Wide Leg Denim - Light Wash",
+    "slug": "wide-leg-denim-light-wash",
+    "price": 5950,
+    "images": [
+      "/images/product-denim-1.png",
+      "/images/product-denim-2.png"
+    ],
+    "colors": [
+      {
+        "name": "Light Blue",
+        "hex": "#8fb4d9"
+      },
+      {
+        "name": "Medium Blue",
+        "hex": "#5b89b3"
+      }
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "category": "denim",
+    "collection": [
+      "mens",
+      "new-arrivals"
+    ],
+    "description": "Premium wide leg denim jeans in a light wash finish. Features a relaxed fit through the hip and thigh with a wide leg opening. Made from heavyweight 14oz selvedge denim.",
+    "reviews": 15,
+    "rating": 4.9,
+    "isNew": true,
+    "isBestSeller": true
+  },
+  {
+    "id": "4",
+    "name": "Slim Fit Denim - Washed Black",
+    "slug": "slim-fit-denim-washed-black",
+    "price": 5450,
+    "images": [
+      "/images/product-denim-2.png",
+      "/images/product-denim-1.png"
+    ],
+    "colors": [
+      {
+        "name": "Washed Black",
+        "hex": "#2d2d2d"
+      },
+      {
+        "name": "Raw Black",
+        "hex": "#1a1a1a"
+      }
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "category": "denim",
+    "collection": [
+      "mens"
+    ],
+    "description": "Classic slim fit denim in a washed black finish. Comfortable stretch denim with a modern tapered leg. Perfect for everyday wear.",
+    "reviews": 22,
+    "rating": 4.7,
+    "isBestSeller": true
+  },
+  {
+    "id": "5",
+    "name": "Crossbody Bag 2.0",
+    "slug": "crossbody-bag-2-0",
+    "price": 2450,
+    "images": [
+      "/images/product-bag-1.png",
+      "/images/product-tote-1.png"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "Brown",
+        "hex": "#8B6914"
+      },
+      {
+        "name": "Navy",
+        "hex": "#2c3e50"
+      }
+    ],
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "category": "bags",
+    "collection": [
+      "mens",
+      "womens",
+      "accessories"
+    ],
+    "description": "Premium vegan leather crossbody bag with adjustable strap. Features multiple compartments, magnetic closure, and water-resistant lining. Perfect for everyday carry.",
+    "reviews": 8,
+    "rating": 5,
+    "isBestSeller": true
+  },
+  {
+    "id": "6",
+    "name": "Essential Heavyweight Hoodie",
+    "slug": "essential-heavyweight-hoodie",
+    "price": 6950,
+    "images": [
+      "/images/product-hoodie-1.png",
+      "/images/product-womens-hoodie-1.png"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "Gray",
+        "hex": "#808080"
+      },
+      {
+        "name": "Navy",
+        "hex": "#2c3e50"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "category": "hoodies",
+    "collection": [
+      "mens",
+      "new-arrivals"
+    ],
+    "description": "Premium 450gsm heavyweight French terry hoodie with kangaroo pocket and adjustable drawcord hood. Double-stitched seams for durability. Relaxed oversized fit.",
+    "reviews": 31,
+    "rating": 4.9,
+    "isNew": true,
+    "isBestSeller": true
+  },
+  {
+    "id": "7",
+    "name": "Athletic Mesh Shorts",
+    "slug": "athletic-mesh-shorts",
+    "price": 2950,
+    "images": [
+      "/images/product-shorts-1.png",
+      "/images/product-shorts-1.png"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "Gray",
+        "hex": "#808080"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "category": "shorts",
+    "collection": [
+      "mens"
+    ],
+    "description": "Lightweight athletic mesh shorts with elastic waistband and internal drawcord. Features side pockets and breathable mesh fabric for maximum comfort during workouts.",
+    "reviews": 6,
+    "rating": 4.3
+  },
+  {
+    "id": "8",
+    "name": "Draven Snapback Cap",
+    "slug": "draven-snapback-cap",
+    "price": 1950,
+    "images": [
+      "/images/product-cap-1.png",
+      "/images/product-cap-1.png"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "White",
+        "hex": "#ffffff"
+      }
+    ],
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "category": "accessories",
+    "collection": [
+      "mens",
+      "womens",
+      "accessories"
+    ],
+    "description": "Structured 6-panel snapback cap with embroidered Draven logo on front. Adjustable snap closure for a perfect fit. Premium cotton twill construction.",
+    "reviews": 14,
+    "rating": 4.6,
+    "isBestSeller": true
+  },
+  {
+    "id": "9",
+    "name": "Draven HydroJug 1L",
+    "slug": "draven-hydrojug-1l",
+    "price": 4500,
+    "images": [
+      "/images/product-bottle-1.png",
+      "/images/product-bottle-1.png"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "White",
+        "hex": "#ffffff"
+      }
+    ],
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "category": "accessories",
+    "collection": [
+      "accessories"
+    ],
+    "description": "Premium 1L stainless steel water bottle with double-wall vacuum insulation. Keeps drinks cold for 24 hours or hot for 12 hours. BPA-free with leak-proof lid.",
+    "reviews": 19,
+    "rating": 4.8
+  },
+  {
+    "id": "10",
+    "name": "Draven Tote Bag",
+    "slug": "draven-tote-bag",
+    "price": 2500,
+    "images": [
+      "/images/product-tote-1.png",
+      "/images/product-bag-1.png"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      }
+    ],
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "category": "bags",
+    "collection": [
+      "mens",
+      "womens",
+      "accessories"
+    ],
+    "description": "Durable canvas tote bag with reinforced handles and interior pocket. Features subtle embroidered Draven logo. Perfect for daily errands or gym visits.",
+    "reviews": 5,
+    "rating": 4.4
+  },
+  {
+    "id": "11",
+    "name": "Essential Crop Tee",
+    "slug": "essential-crop-tee",
+    "price": 2950,
+    "originalPrice": 3450,
+    "images": [
+      "/images/product-womens-tee-1.png",
+      "/images/product-womens-tee-1.png"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "White",
+        "hex": "#ffffff"
+      },
+      {
+        "name": "Sage",
+        "hex": "#9CAF88"
+      }
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "category": "womens",
+    "collection": [
+      "womens",
+      "sale"
+    ],
+    "description": "Fitted crop tee with minimal logo detailing. Made from soft premium cotton blend with a flattering relaxed fit. Perfect layering piece for any outfit.",
+    "reviews": 17,
+    "rating": 4.7,
+    "isSale": true
+  },
+  {
+    "id": "12",
+    "name": "Oversized Comfort Hoodie",
+    "slug": "oversized-comfort-hoodie",
+    "price": 6450,
+    "images": [
+      "/images/product-womens-hoodie-1.png",
+      "/images/product-hoodie-1.png"
+    ],
+    "colors": [
+      {
+        "name": "Cream",
+        "hex": "#F5F0E1"
+      },
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "Dusty Pink",
+        "hex": "#D4A5A5"
+      }
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "category": "womens",
+    "collection": [
+      "womens",
+      "new-arrivals"
+    ],
+    "description": "Ultra-soft oversized hoodie in a premium fleece blend. Features dropped shoulders, kangaroo pocket, and an extra-long fit for maximum comfort and style.",
+    "reviews": 24,
+    "rating": 4.9,
+    "isNew": true
+  },
+  {
+    "id": "13",
+    "name": "Classic Low-Top Sneakers",
+    "slug": "classic-low-top-sneakers",
+    "price": 8950,
+    "images": [
+      "/images/product-sneakers-1.png",
+      "/images/product-sneakers-1.png"
+    ],
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#ffffff"
+      },
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      }
+    ],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "category": "footwear",
+    "collection": [
+      "mens",
+      "womens",
+      "footwear",
+      "new-arrivals"
+    ],
+    "description": "Clean minimal low-top sneakers in premium leather. Features cushioned insole, rubber outsole, and subtle branding. Versatile enough for any outfit.",
+    "reviews": 9,
+    "rating": 4.5,
+    "isNew": true
+  },
+  {
+    "id": "b1",
+    "name": "Draven AOP Oversized T-Shirt",
+    "slug": "draven-aop-oversized-tee",
+    "price": 3200,
+    "originalPrice": 4500,
+    "images": [
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111111"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1d2a44"
+      },
+      {
+        "name": "Beige",
+        "hex": "#d9d2c9"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "category": "tees",
+    "collection": [
+      "mens",
+      "new-arrivals",
+      "printed-tees",
+      "sale"
+    ],
+    "description": "A signature all-over print oversized t-shirt designed for comfort and a bold street-style statement. Crafted from heavy-weight 240GSM combed cotton, it features a ribbed crewneck collar, relaxed shoulders, and high-density printing that stands up to daily wear.",
+    "reviews": 29,
+    "rating": 4.8,
+    "isNew": true,
+    "isSale": true,
+    "isBestSeller": true
+  },
+  {
+    "id": "b2",
+    "name": "Lux Soft M Stripe Long Sleeve Shirt",
+    "slug": "lux-soft-long-sleeve-shirt",
+    "price": 4900,
+    "images": [
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80"
+    ],
+    "colors": [
+      {
+        "name": "White/Blue",
+        "hex": "#a6c0db"
+      },
+      {
+        "name": "Grey/Black",
+        "hex": "#4f4f4f"
+      }
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "category": "shirts",
+    "collection": [
+      "mens",
+      "new-arrivals"
+    ],
+    "description": "Upgrade your wardrobe with this luxury stripe button-down shirt. Features a soft-brushed cotton fabric finish that feels light against the skin. Cut in a modern regular fit, it transitions seamlessly from daytime business to late-evening lounge contexts.",
+    "reviews": 14,
+    "rating": 4.6,
+    "isNew": true
+  },
+  {
+    "id": "b3",
+    "name": "The Lone Wolf Oversized T-Shirt",
+    "slug": "lone-wolf-oversized-tee",
+    "price": 2950,
+    "originalPrice": 3800,
+    "images": [
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "colors": [
+      {
+        "name": "Vintage Wash",
+        "hex": "#2e2e2e"
+      },
+      {
+        "name": "Charcoal",
+        "hex": "#1c1c1c"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "category": "tees",
+    "collection": [
+      "mens",
+      "printed-tees",
+      "sale"
+    ],
+    "description": "Designed for the modern rebel, The Lone Wolf Tee features a high-density vintage washed graphic print on the front. Relaxed drop shoulders, wide sleeves, and a structured fit give you that effortless street silhouette.",
+    "reviews": 42,
+    "rating": 4.9,
+    "isSale": true,
+    "isBestSeller": true
+  },
+  {
+    "id": "b4",
+    "name": "Raised Stripe Long Sleeve Shirt",
+    "slug": "raised-stripe-long-sleeve",
+    "price": 4500,
+    "originalPrice": 5500,
+    "images": [
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "colors": [
+      {
+        "name": "Navy Stripe",
+        "hex": "#1c283d"
+      },
+      {
+        "name": "Beige Stripe",
+        "hex": "#d9d0c1"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "category": "shirts",
+    "collection": [
+      "mens",
+      "sale"
+    ],
+    "description": "A textured stripe design that offers a distinct premium look. Made from a heavy organic cotton blend, it is structured yet incredibly soft. Features an elegant hidden placket and adjustable button cuffs.",
+    "reviews": 11,
+    "rating": 4.4,
+    "isSale": true
+  },
+  {
+    "id": "b5",
+    "name": "Urbaneagle St.Art Hoodie",
+    "slug": "urbaneagle-st-art-hoodie",
+    "price": 6800,
+    "images": [
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80"
+    ],
+    "colors": [
+      {
+        "name": "Off-White",
+        "hex": "#f0ede6"
+      },
+      {
+        "name": "Sage Green",
+        "hex": "#879685"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "category": "hoodies",
+    "collection": [
+      "mens",
+      "new-arrivals"
+    ],
+    "description": "A premium heavy-fleece hoodie with a brushed inner lining for extra warmth and coziness. Designed with custom screen-printed artwork across the back, a double-lined hood, and a generous kangaroo pocket.",
+    "reviews": 18,
+    "rating": 4.7,
+    "isNew": true,
+    "isBestSeller": true
+  },
+  {
+    "id": "b6",
+    "name": "Amazon Bloom T-Shirt",
+    "slug": "amazon-bloom-t-shirt",
+    "price": 3100,
+    "originalPrice": 4200,
+    "images": [
+      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80"
+    ],
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#ffffff"
+      },
+      {
+        "name": "Charcoal",
+        "hex": "#333333"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "category": "tees",
+    "collection": [
+      "mens",
+      "sale"
+    ],
+    "description": "A clean minimalist shirt with a subtle floral back print inspired by tropical botany. Features a comfortable ribbed crewneck and custom stitching along the hem.",
+    "reviews": 21,
+    "rating": 4.5,
+    "isSale": true
+  },
+  {
+    "id": "b7",
+    "name": "Streetwear Flex Cargo Joggers",
+    "slug": "streetwear-flex-cargo-joggers",
+    "price": 5400,
+    "originalPrice": 7200,
+    "images": [
+      "https://images.unsplash.com/photo-1551854838-212c50b4c184?auto=format&fit=crop&w=800&q=80"
+    ],
+    "colors": [
+      {
+        "name": "Olive",
+        "hex": "#556b2f"
+      },
+      {
+        "name": "Black",
+        "hex": "#111111"
+      }
+    ],
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "category": "joggers",
+    "collection": [
+      "mens",
+      "sale"
+    ],
+    "description": "Designed with multi-pocket cargo utility, these joggers are crafted from durable ripstop cotton with an elastic waistband and drawstring ankles for an adjustable fit.",
+    "reviews": 35,
+    "rating": 4.8,
+    "isSale": true,
+    "isBestSeller": true
+  },
+  {
+    "id": "b8",
+    "name": "Everyday Edge Slim Jeans",
+    "slug": "everyday-edge-slim-jeans",
+    "price": 6200,
+    "images": [
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "colors": [
+      {
+        "name": "Indigo Wash",
+        "hex": "#3b5998"
+      },
+      {
+        "name": "Jet Black",
+        "hex": "#0f0f0f"
+      }
+    ],
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "category": "denim",
+    "collection": [
+      "mens",
+      "new-arrivals"
+    ],
+    "description": "Premium washed raw denim with light distressing details. Designed in a tapered slim fit that conforms to your form while offering just enough stretch for daily comfort.",
+    "reviews": 16,
+    "rating": 4.6,
+    "isNew": true
+  },
+  {
+    "id": "b9",
+    "name": "Draven Classic Fitted Polo",
+    "slug": "draven-classic-fitted-polo",
+    "price": 3600,
+    "originalPrice": 4200,
+    "images": [
+      "https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80"
+    ],
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#ffffff"
+      },
+      {
+        "name": "Navy",
+        "hex": "#112233"
+      },
+      {
+        "name": "Dark Green",
+        "hex": "#003311"
+      }
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "category": "polo",
+    "collection": [
+      "mens",
+      "new-arrivals",
+      "sale"
+    ],
+    "description": "A tailored pique cotton polo shirt featuring signature Draven embroidery on the chest. Designed with ribbed collar and cuffs, and a two-button placket for a smart-casual look.",
+    "reviews": 9,
+    "rating": 4.5,
+    "isNew": true,
+    "isSale": true
+  },
+  {
+    "id": "b10",
+    "name": "Signature Streetwear Cap",
+    "slug": "signature-streetwear-cap",
+    "price": 1950,
+    "images": [
+      "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111111"
+      },
+      {
+        "name": "Khaki",
+        "hex": "#c2b280"
+      }
+    ],
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "category": "caps",
+    "collection": [
+      "mens",
+      "womens",
+      "accessories",
+      "new-arrivals"
+    ],
+    "description": "Classic 6-panel unstructured baseball cap with flat-embellished branding. Designed with an adjustable fabric strap and brass buckle for a clean, universal fit.",
+    "reviews": 13,
+    "rating": 4.7,
+    "isNew": true
+  }
+]

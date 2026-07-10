@@ -55,12 +55,13 @@ export default function Header() {
 
         {/* Center: Logo */}
         <Link href="/" className={styles.logo}>
-          <span className={styles.logoText}>VOLEEE</span>
+          <span className={styles.logoText}>DRAVEN</span>
+          <span className={styles.logoSubtitle}>NEVER BACK DOWN</span>
         </Link>
 
         {/* Right: Actions */}
         <div className={styles.right}>
-          <Link href="#" className={styles.loginLink}>LOG IN</Link>
+          <Link href="/admin" className={styles.loginLink}>LOG IN</Link>
           <button
             className={styles.iconBtn}
             onClick={() => setIsSearchOpen(true)}

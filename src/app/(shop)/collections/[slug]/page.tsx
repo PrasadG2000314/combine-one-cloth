@@ -1,12 +1,12 @@
 'use client';
 
-import { use, useState, useMemo } from 'react';
-import { Trash2 } from 'lucide-react';
+import { use, useState, useEffect, useMemo } from 'react';
+import { Trash2, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getCollectionBySlug } from '@/data/collections';
-import { getProductsByCollection, products, Product } from '@/data/products';
+import { Product } from '@/data/products';
 import ProductCard from '@/components/product/ProductCard';
 import styles from './page.module.css';
 
@@ -35,15 +35,31 @@ export default function CollectionPage({ params }: { params: Promise<{ slug: str
   const [gridCols, setGridCols] = useState<number>(4);
   const [showFilters, setShowFilters] = useState<boolean>(false);
 
+  const [productsList, setProductsList] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch catalog dynamically on mount
+  useEffect(() => {
+    setLoading(true);
+    fetch('/api/storefront/products')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setProductsList(data.products || []);
+        }
+      })
+      .catch((err) => console.error('Error fetching collection products:', err))
+      .finally(() => setLoading(false));
+  }, []);
+
   // Get base products in this collection
   const baseProducts = useMemo(() => {
     if (slug === 'all' || slug === 'shop-all') {
-      return products;
+      return productsList;
     }
-    const filtered = getProductsByCollection(slug);
-    // If no matching collection slug, return all as fallback
-    return filtered.length > 0 ? filtered : products;
-  }, [slug]);
+    const filtered = productsList.filter(p => p.collection.includes(slug));
+    return filtered.length > 0 ? filtered : productsList;
+  }, [slug, productsList]);
 
   // Derived filter category options in this collection
   const availableCategories = useMemo(() => {
@@ -95,6 +111,15 @@ export default function CollectionPage({ params }: { params: Promise<{ slug: str
     setSortOrder('featured');
   };
 
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', fontFamily: 'var(--font-sans)', color: '#111' }}>
+        <Loader2 size={36} className="animate-spin" style={{ marginBottom: '12px' }} />
+        <p style={{ fontSize: '0.9rem', color: '#666' }}>Loading collection garments...</p>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.page}>
       {/* Hero Banner */}
@@ -109,7 +134,7 @@ export default function CollectionPage({ params }: { params: Promise<{ slug: str
         />
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          <p className={styles.heroLabel}>VOLEEE SIGNATURE</p>
+          <p className={styles.heroLabel}>DRAVEN SIGNATURE</p>
           <h1 className={styles.heroTitle}>{displayName}</h1>
           <p className={styles.heroDesc}>{collection?.description || 'Curated minimalist streetwear fits.'}</p>
         </div>

@@ -16,9 +16,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Voleee | Premium Streetwear & Modern Fashion",
-  description: "Experience the next level of fashion with Voleee. Explore our collections of minimalist luxury streetwear, heavyweight cotton tees, structured jackets, and high-end accessories. Crafted for the modern wardrobe.",
-  keywords: "Voleee, fashion, luxury streetwear, designer clothing, minimal streetwear, premium tees, hoodies, designer fashion",
+  title: "Draven | Premium Streetwear & Modern Fashion",
+  description: "Experience the next level of fashion with Draven. Explore our collections of minimalist luxury streetwear, heavyweight cotton tees, structured jackets, and high-end accessories. Crafted for the modern wardrobe.",
+  keywords: "Draven, fashion, luxury streetwear, designer clothing, minimal streetwear, premium tees, hoodies, designer fashion",
 };
 
 export default function RootLayout({

@@ -99,23 +99,44 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   text-decoration: none;
+  line-height: 1.1;
 }
 
 .logoText {
   font-family: var(--font-title-family);
-  font-size: 32px;
-  font-weight: 400;
-  letter-spacing: 0.25em;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   color: var(--color-primary);
-  text-indent: 0.25em; /* Shift text slightly to perfectly center with tracking */
+  text-indent: 0.22em; /* Shift text slightly to perfectly center with tracking */
   transition: letter-spacing var(--transition-base);
 }
 
+.logoSubtitle {
+  font-family: var(--font-family);
+  font-size: 7.5px;
+  font-weight: 500;
+  letter-spacing: 0.44em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-top: 1px;
+  text-indent: 0.44em; /* offset letter spacing for perfect center */
+  opacity: 0.85;
+  transition: letter-spacing var(--transition-base), color var(--transition-base);
+}
+
 .logo:hover .logoText {
-  letter-spacing: 0.35em;
-  text-indent: 0.35em;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+}
+
+.logo:hover .logoSubtitle {
+  letter-spacing: 0.54em;
+  text-indent: 0.54em;
+  color: var(--color-primary);
 }
 
 /* Right section */

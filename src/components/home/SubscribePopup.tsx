@@ -26,7 +26,10 @@ export default function SubscribePopup() {
 
         <div className={styles.imageSection}>
           <div className={styles.imagePlaceholder}>
-            <span className={styles.logoOverlay}>VOLEEE</span>
+            <div className={styles.logoOverlayContainer}>
+              <span className={styles.logoOverlay}>DRAVEN</span>
+              <span className={styles.logoOverlaySubtitle}>NEVER BACK DOWN</span>
+            </div>
           </div>
         </div>
 

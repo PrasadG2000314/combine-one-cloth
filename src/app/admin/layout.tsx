@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Voleee Storefront | Secure Admin Portal",
+  title: "Draven Storefront | Secure Admin Portal",
   description: "Secure administration panel for managing sales, orders, and dashboard configurations.",
   robots: {
     index: false,

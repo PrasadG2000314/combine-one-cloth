@@ -4,21 +4,119 @@ import { use, useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { getProductBySlug, products } from '@/data/products';
+import { products, Product } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import ProductCard from '@/components/product/ProductCard';
 import styles from './page.module.css';
+import { Loader2 } from 'lucide-react';
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
-  const product = getProductBySlug(slug);
   const { addItem } = useCart();
 
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loadingProduct, setLoadingProduct] = useState(true);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [openAccordion, setOpenAccordion] = useState<string | null>('specs');
   const [activeImage, setActiveImage] = useState(0);
+  const [stockList, setStockList] = useState<{ size: string; color: string; quantity: number }[]>([]);
+
+  // Reviews States
+  const [comments, setComments] = useState<any[]>([]);
+  const [commentName, setCommentName] = useState('');
+  const [commentEmail, setCommentEmail] = useState('');
+  const [commentRating, setCommentRating] = useState(5);
+  const [commentContent, setCommentContent] = useState('');
+  const [submittingComment, setSubmittingComment] = useState(false);
+  const [commentSuccess, setCommentSuccess] = useState(false);
+  const [commentError, setCommentError] = useState<string | null>(null);
+
+  // Fetch reviews for the product
+  const fetchComments = () => {
+    if (!product) return;
+    fetch(`/api/comments?productId=${product.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setComments(data.comments || []);
+        }
+      })
+      .catch((err) => console.error('Error fetching comments:', err));
+  };
+
+  useEffect(() => {
+    fetchComments();
+  }, [product]);
+
+  const handleCommentSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setCommentError(null);
+    setCommentSuccess(false);
+
+    if (!product) {
+      setCommentError('Garment details not loaded.');
+      return;
+    }
+
+    if (!commentName.trim() || !commentEmail.trim() || !commentContent.trim()) {
+      setCommentError('Please fill in all review fields.');
+      return;
+    }
+
+    setSubmittingComment(true);
+
+    try {
+      const response = await fetch('/api/comments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          productId: product.id,
+          customerName: commentName.trim(),
+          email: commentEmail.trim(),
+          rating: commentRating,
+          content: commentContent.trim()
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to submit review.');
+      }
+
+      setCommentSuccess(true);
+      setCommentName('');
+      setCommentEmail('');
+      setCommentRating(5);
+      setCommentContent('');
+      fetchComments();
+    } catch (err: any) {
+      setCommentError(err.message || 'Failed to submit review.');
+    } finally {
+      setSubmittingComment(false);
+    }
+  };
+
+  // Load product details dynamically from database
+  useEffect(() => {
+    setLoadingProduct(true);
+    fetch(`/api/storefront/products?slug=${slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setProduct(data.product);
+        } else {
+          setProduct(null);
+        }
+      })
+      .catch((err) => {
+        console.error('Error fetching product:', err);
+        setProduct(null);
+      })
+      .finally(() => setLoadingProduct(false));
+  }, [slug]);
 
   // Set default swatches when product loads
   useEffect(() => {
@@ -29,18 +127,55 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
     }
   }, [product]);
 
-  // Calculate stock status dynamically
+  // Load live stock levels from API
+  useEffect(() => {
+    if (!product) return;
+    fetch(`/api/stock?productId=${product.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setStockList(data.stock || []);
+        }
+      })
+      .catch((err) => console.error('Error fetching stock:', err));
+  }, [product]);
+
+  // Calculate stock status dynamically based on real data
   const stockStatus = useMemo(() => {
-    if (!selectedSize) return 'Select size';
-    // Simple deterministic mock stock checking
-    if (selectedSize === 'XXL' || selectedSize === '36' || selectedSize === 'XL') {
-      return '⚠️ LOW STOCK - Only 2 articles remaining';
+    if (!selectedSize || !selectedColor) return 'Select color & size';
+    const record = stockList.find(s => s.size === selectedSize && s.color === selectedColor);
+    if (!record) return '✓ IN STOCK - Ready for dispatch';
+    
+    const qty = record.quantity;
+    if (qty === 0) {
+      return '❌ OUT OF STOCK - Sold out';
     }
-    if (selectedSize === 'S' || selectedSize === '28') {
-      return '⚠️ LIMITED STOCK - 4 articles remaining';
+    if (qty <= 2) {
+      return `⚠️ LOW STOCK - Only ${qty} articles remaining`;
     }
-    return '✓ IN STOCK - Ready for dispatch';
-  }, [selectedSize]);
+    return `✓ IN STOCK - ${qty} articles available`;
+  }, [selectedSize, selectedColor, stockList]);
+
+  // Helper to check if a size is out of stock in the currently selected color
+  const isSizeOutOfStock = (size: string) => {
+    const record = stockList.find(s => s.size === size && s.color === selectedColor);
+    return record ? record.quantity <= 0 : false;
+  };
+
+  const currentVariantOutOfStock = useMemo(() => {
+    if (!selectedSize || !selectedColor) return false;
+    const record = stockList.find(s => s.size === selectedSize && s.color === selectedColor);
+    return record ? record.quantity <= 0 : false;
+  }, [selectedSize, selectedColor, stockList]);
+
+  if (loadingProduct) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', fontFamily: 'var(--font-sans)' }}>
+        <Loader2 size={36} className="animate-spin" style={{ color: '#111', marginBottom: '12px' }} />
+        <p style={{ fontSize: '0.9rem', color: '#666' }}>Loading garment details...</p>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -170,15 +305,19 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                   </button>
                 </div>
                 <div className="size-buttons">
-                  {product.sizes.map((size) => (
-                    <button
-                      key={size}
-                      className={`size-btn ${selectedSize === size ? 'active' : ''}`}
-                      onClick={() => setSelectedSize(size)}
-                    >
-                      {size}
-                    </button>
-                  ))}
+                  {product.sizes.map((size) => {
+                    const isSoldOut = isSizeOutOfStock(size);
+                    return (
+                      <button
+                        key={size}
+                        className={`size-btn ${selectedSize === size ? 'active' : ''} ${isSoldOut ? 'out-of-stock' : ''}`}
+                        onClick={() => setSelectedSize(size)}
+                        title={isSoldOut ? `${size} is sold out` : undefined}
+                      >
+                        {size}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -193,12 +332,23 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             {/* Add to Cart Controls */}
             <div className={styles.addToCartSection}>
               <div className="quantity-stepper">
-                <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
-                <span className="qty-value">{quantity}</span>
-                <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                <button 
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  disabled={currentVariantOutOfStock}
+                >−</button>
+                <span className="qty-value">{currentVariantOutOfStock ? 0 : quantity}</span>
+                <button 
+                  onClick={() => setQuantity(quantity + 1)}
+                  disabled={currentVariantOutOfStock}
+                >+</button>
               </div>
-              <button className={styles.addToCartBtn} onClick={handleAddToCart}>
-                ADD TO SHOPPING BAG
+              <button 
+                className={styles.addToCartBtn} 
+                onClick={handleAddToCart}
+                disabled={currentVariantOutOfStock}
+                style={currentVariantOutOfStock ? { backgroundColor: '#777', cursor: 'not-allowed', opacity: 0.6 } : undefined}
+              >
+                {currentVariantOutOfStock ? 'OUT OF STOCK' : 'ADD TO CART'}
               </button>
             </div>
 
@@ -275,6 +425,147 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             </div>
           </div>
         </div>
+
+        {/* Customer Reviews Section */}
+        <section className={styles.reviewsSection}>
+          <div className={styles.reviewsHeader}>
+            <h2 className={styles.reviewsTitle}>Customer Reviews</h2>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '0.9rem', color: '#666' }}>
+              <div className="stars" style={{ display: 'flex', gap: '2px' }}>
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <svg key={star} width="14" height="14" viewBox="0 0 24 24" fill={star <= Math.round(comments.reduce((acc, c) => acc + c.rating, 0) / (comments.length || 1)) ? '#c5a880' : 'none'} stroke="#c5a880" strokeWidth="1.5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                ))}
+              </div>
+              <span>Based on {comments.length} approved reviews</span>
+            </div>
+          </div>
+
+          <div className={styles.reviewsContainer}>
+            {/* Left: Review List */}
+            <div className={styles.reviewsList}>
+              {comments.length === 0 ? (
+                <div style={{ padding: '40px 20px', textAlign: 'center', border: '1px dashed var(--color-border)', color: '#666', fontSize: '0.9rem', borderRadius: '4px' }}>
+                  No reviews yet. Be the first to share your thoughts on this garment!
+                </div>
+              ) : (
+                comments.map((comment) => (
+                  <div key={comment.id} className={styles.reviewCard}>
+                    <div className={styles.reviewCardHeader}>
+                      <div>
+                        <div className={styles.reviewAuthor}>{comment.customerName}</div>
+                        <div className={styles.reviewDate}>
+                          {new Date(comment.createdAt).toLocaleDateString(undefined, {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })}
+                        </div>
+                      </div>
+                      <div className="stars" style={{ display: 'flex', gap: '2px' }}>
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <svg key={star} width="12" height="12" viewBox="0 0 24 24" fill={star <= comment.rating ? '#c5a880' : 'none'} stroke="#c5a880" strokeWidth="1.5">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                          </svg>
+                        ))}
+                      </div>
+                    </div>
+                    <p className={styles.reviewContent}>{comment.content}</p>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Right: Review Form */}
+            <div className={styles.reviewFormCard}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '20px', color: '#111' }}>
+                Write a Review
+              </h3>
+
+              {commentSuccess && (
+                <div className={styles.reviewSuccess}>
+                  ✓ Thank you! Your review has been submitted for admin moderation.
+                </div>
+              )}
+
+              {commentError && (
+                <div className={styles.reviewError}>
+                  {commentError}
+                </div>
+              )}
+
+              <form onSubmit={handleCommentSubmit}>
+                <div className={styles.formCol}>
+                  <label className={styles.formLabel}>Rating</label>
+                  <div className={styles.starsSelector}>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        className={styles.starBtn}
+                        onClick={() => setCommentRating(star)}
+                      >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill={star <= commentRating ? '#c5a880' : 'none'} stroke="#c5a880" strokeWidth="1.5">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={styles.formRow}>
+                  <div className={styles.formCol} style={{ marginBottom: 0 }}>
+                    <label className={styles.formLabel}>Your Name</label>
+                    <input
+                      type="text"
+                      className={styles.formInput}
+                      placeholder="e.g. John Doe"
+                      value={commentName}
+                      onChange={(e) => setCommentName(e.target.value)}
+                      disabled={submittingComment}
+                      required
+                    />
+                  </div>
+                  <div className={styles.formCol} style={{ marginBottom: 0 }}>
+                    <label className={styles.formLabel}>Email Address</label>
+                    <input
+                      type="email"
+                      className={styles.formInput}
+                      placeholder="e.g. john@example.com"
+                      value={commentEmail}
+                      onChange={(e) => setCommentEmail(e.target.value)}
+                      disabled={submittingComment}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.formCol}>
+                  <label className={styles.formLabel}>Review Content</label>
+                  <textarea
+                    className={styles.formTextarea}
+                    placeholder="Share your thoughts about the fabric, sizing, comfort, and general quality..."
+                    rows={4}
+                    value={commentContent}
+                    onChange={(e) => setCommentContent(e.target.value)}
+                    disabled={submittingComment}
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className={styles.addToCartBtn}
+                  style={{ width: '100%', marginTop: '8px' }}
+                  disabled={submittingComment}
+                >
+                  {submittingComment ? 'Submitting...' : 'Submit Review'}
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
 
         {/* You May Also Like Section */}
         <div className={styles.related}>
