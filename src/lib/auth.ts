@@ -6,15 +6,36 @@ import { readAdminConfig, writeAdminConfig } from './db';
 // Session duration: 2 hours
 const SESSION_DURATION_MS = 2 * 60 * 60 * 1000;
 
-// Persist sessions in global scope to survive Next.js hot-reloads during dev
-const globalSessions = globalThis as unknown as {
-  adminSessions?: Map<string, { username: string; expiresAt: number }>;
-};
-
-if (!globalSessions.adminSessions) {
-  globalSessions.adminSessions = new Map();
+interface SessionData {
+  username: string;
+  expiresAt: number;
 }
-const sessions = globalSessions.adminSessions;
+
+const SESSIONS_FILE = path.join(process.cwd(), 'src', 'data', 'sessions_db.json');
+
+function readSessions(): Record<string, SessionData> {
+  try {
+    if (!fs.existsSync(SESSIONS_FILE)) {
+      return {};
+    }
+    const data = fs.readFileSync(SESSIONS_FILE, 'utf-8');
+    return JSON.parse(data) || {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function writeSessions(data: Record<string, SessionData>): void {
+  try {
+    const dir = path.dirname(SESSIONS_FILE);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(SESSIONS_FILE, JSON.stringify(data, null, 2), 'utf-8');
+  } catch (error) {
+    console.error('Failed to write sessions file:', error);
+  }
+}
 
 /**
  * Hash a password using Node's native scrypt key derivation.
@@ -112,7 +133,9 @@ export function verifyAdminLogin(password: string): boolean {
 export function createSession(username: string): string {
   const token = generateSessionToken();
   const expiresAt = Date.now() + SESSION_DURATION_MS;
-  sessions.set(token, { username, expiresAt });
+  const sessions = readSessions();
+  sessions[token] = { username, expiresAt };
+  writeSessions(sessions);
   return token;
 }
 
@@ -122,18 +145,21 @@ export function createSession(username: string): string {
 export function validateSession(token: string | null | undefined): boolean {
   if (!token) return false;
 
-  const session = sessions.get(token);
+  const sessions = readSessions();
+  const session = sessions[token];
   if (!session) return false;
 
   // Check expiration
   if (Date.now() > session.expiresAt) {
-    sessions.delete(token);
+    delete sessions[token];
+    writeSessions(sessions);
     return false;
   }
 
   // Extend session duration on activity (sliding expiration)
   session.expiresAt = Date.now() + SESSION_DURATION_MS;
-  sessions.set(token, session);
+  sessions[token] = session;
+  writeSessions(sessions);
   return true;
 }
 
@@ -142,6 +168,10 @@ export function validateSession(token: string | null | undefined): boolean {
  */
 export function destroySession(token: string | null | undefined): void {
   if (token) {
-    sessions.delete(token);
+    const sessions = readSessions();
+    if (sessions[token]) {
+      delete sessions[token];
+      writeSessions(sessions);
+    }
   }
 }
