@@ -6,35 +6,12 @@ import { readAdminConfig, writeAdminConfig } from './db';
 // Session duration: 2 hours
 const SESSION_DURATION_MS = 2 * 60 * 60 * 1000;
 
-interface SessionData {
+// Secret key for HMAC signing (should be set via env var, fallback to a local static secret for dev)
+const JWT_SECRET = process.env.ADMIN_JWT_SECRET || 'draven_fallback_secret_key_2026_!';
+
+interface SessionPayload {
   username: string;
   expiresAt: number;
-}
-
-const SESSIONS_FILE = path.join(process.cwd(), 'src', 'data', 'sessions_db.json');
-
-function readSessions(): Record<string, SessionData> {
-  try {
-    if (!fs.existsSync(SESSIONS_FILE)) {
-      return {};
-    }
-    const data = fs.readFileSync(SESSIONS_FILE, 'utf-8');
-    return JSON.parse(data) || {};
-  } catch (error) {
-    return {};
-  }
-}
-
-function writeSessions(data: Record<string, SessionData>): void {
-  try {
-    const dir = path.dirname(SESSIONS_FILE);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    fs.writeFileSync(SESSIONS_FILE, JSON.stringify(data, null, 2), 'utf-8');
-  } catch (error) {
-    console.error('Failed to write sessions file:', error);
-  }
 }
 
 /**
@@ -129,49 +106,72 @@ export function verifyAdminLogin(password: string): boolean {
 
 /**
  * Create a new admin session.
+ * Generates a signed, stateless JWT-like token.
  */
 export function createSession(username: string): string {
-  const token = generateSessionToken();
-  const expiresAt = Date.now() + SESSION_DURATION_MS;
-  const sessions = readSessions();
-  sessions[token] = { username, expiresAt };
-  writeSessions(sessions);
-  return token;
+  const payload: SessionPayload = {
+    username,
+    expiresAt: Date.now() + SESSION_DURATION_MS
+  };
+  
+  const serialized = Buffer.from(JSON.stringify(payload)).toString('base64url');
+  
+  // Sign the serialized payload using HMAC-SHA256
+  const signature = crypto
+    .createHmac('sha256', JWT_SECRET)
+    .update(serialized)
+    .digest('base64url');
+    
+  return `${serialized}.${signature}`;
 }
 
 /**
  * Check if a session token is active and valid.
+ * Verifies the cryptographic signature and checks expiration.
  */
 export function validateSession(token: string | null | undefined): boolean {
   if (!token) return false;
-
-  const sessions = readSessions();
-  const session = sessions[token];
-  if (!session) return false;
-
-  // Check expiration
-  if (Date.now() > session.expiresAt) {
-    delete sessions[token];
-    writeSessions(sessions);
+  
+  const parts = token.split('.');
+  if (parts.length !== 2) return false;
+  
+  const [serialized, signature] = parts;
+  
+  // Re-generate signature to verify integrity
+  const expectedSignature = crypto
+    .createHmac('sha256', JWT_SECRET)
+    .update(serialized)
+    .digest('base64url');
+    
+  const sigBuffer = Buffer.from(signature);
+  const expectedBuffer = Buffer.from(expectedSignature);
+  
+  if (sigBuffer.length !== expectedBuffer.length) {
     return false;
   }
-
-  // Extend session duration on activity (sliding expiration)
-  session.expiresAt = Date.now() + SESSION_DURATION_MS;
-  sessions[token] = session;
-  writeSessions(sessions);
-  return true;
+  
+  if (!crypto.timingSafeEqual(sigBuffer, expectedBuffer)) {
+    return false; // Signature mismatch (tampered!)
+  }
+  
+  try {
+    const payload = JSON.parse(Buffer.from(serialized, 'base64url').toString('utf8')) as SessionPayload;
+    
+    // Check expiration
+    if (Date.now() > payload.expiresAt) {
+      return false; // Expired
+    }
+    
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 
 /**
  * Destroy a session.
+ * In a stateless cookie model, the cookie is deleted on the client side.
  */
 export function destroySession(token: string | null | undefined): void {
-  if (token) {
-    const sessions = readSessions();
-    if (sessions[token]) {
-      delete sessions[token];
-      writeSessions(sessions);
-    }
-  }
+  // No-op on the server since tokens are stateless.
 }
