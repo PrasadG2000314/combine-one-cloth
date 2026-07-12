@@ -10,11 +10,14 @@ export default function AdminLoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
 
-    if (!password) {
+    const formData = new FormData(e.currentTarget);
+    const passwordValue = (formData.get('password') as string) || password;
+
+    if (!passwordValue) {
       setError('Key is required');
       return;
     }
@@ -25,7 +28,7 @@ export default function AdminLoginForm() {
       const response = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ password: passwordValue }),
       });
 
       const data = await response.json();
@@ -61,12 +64,15 @@ export default function AdminLoginForm() {
             <div className={styles.inputWrapper}>
               <Lock className={styles.inputIcon} size={18} />
               <input
+                id="password"
+                name="password"
                 type={showPassword ? 'text' : 'password'}
                 className={styles.input}
                 placeholder="Enter admin password..."
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
+                autoComplete="current-password"
               />
               <button
                 type="button"
