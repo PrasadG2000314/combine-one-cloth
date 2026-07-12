@@ -3,13 +3,19 @@ import { verifyAdminLogin, createSession } from '@/lib/auth';
 
 export async function POST(request: Request) {
   try {
-    const { password } = await request.json();
+    let { password } = await request.json();
 
     if (!password) {
       return NextResponse.json(
         { success: false, message: 'Password is required' },
         { status: 400 }
       );
+    }
+
+    // Clean up passcode: trim whitespace/newlines and remove 'Password:' prefix if copied accidentally
+    password = password.trim();
+    if (password.startsWith('Password:')) {
+      password = password.substring('Password:'.length).trim();
     }
 
     const isValid = verifyAdminLogin(password);
